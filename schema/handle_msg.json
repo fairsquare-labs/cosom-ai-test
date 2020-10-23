@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HandleMsg",
+  "anyOf": [
+    {
+      "type": "object",
+      "required": [
+        "make_new_neural"
+      ],
+      "properties": {
+        "make_new_neural": {
+          "type": "object",
+          "required": [
+            "nn_name",
+            "who"
+          ],
+          "properties": {
+            "nn_name": {
+              "type": "string"
+            },
+            "who": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "add_lyaer"
+      ],
+      "properties": {
+        "add_lyaer": {
+          "type": "object",
+          "required": [
+            "extra_parameter",
+            "layer_type",
+            "nn_name",
+            "size",
+            "who"
+          ],
+          "properties": {
+            "extra_parameter": {
+              "type": "number",
+              "format": "double"
+            },
+            "layer_type": {
+              "type": "string"
+            },
+            "nn_name": {
+              "type": "string"
+            },
+            "size": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0.0
+                },
+                {
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0.0
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2
+            },
+            "who": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "add_data_set"
+      ],
+      "properties": {
+        "add_data_set": {
+          "type": "object",
+          "required": [
+            "input_data",
+            "nn_name",
+            "size",
+            "who"
+          ],
+          "properties": {
+            "input_data": {
+              "type": "string"
+            },
+            "nn_name": {
+              "type": "string"
+            },
+            "size": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0.0
+                },
+                {
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0.0
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2
+            },
+            "who": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "train"
+      ],
+      "properties": {
+        "train": {
+          "type": "object",
+          "required": [
+            "epoch",
+            "learning_rate",
+            "nn_name",
+            "who"
+          ],
+          "properties": {
+            "epoch": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "learning_rate": {
+              "type": "number",
+              "format": "double"
+            },
+            "nn_name": {
+              "type": "string"
+            },
+            "who": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

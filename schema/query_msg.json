@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QueryMsg",
+  "anyOf": [
+    {
+      "type": "object",
+      "required": [
+        "run"
+      ],
+      "properties": {
+        "run": {
+          "type": "object",
+          "required": [
+            "input_data",
+            "nn_name",
+            "who"
+          ],
+          "properties": {
+            "input_data": {
+              "type": "string"
+            },
+            "nn_name": {
+              "type": "string"
+            },
+            "who": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

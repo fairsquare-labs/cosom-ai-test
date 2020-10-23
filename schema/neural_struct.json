@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NeuralStruct",
+  "type": "object",
+  "required": [
+    "name",
+    "neural_network"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "neural_network": {
+      "$ref": "#/definitions/NeuralNetwork"
+    }
+  },
+  "definitions": {
+    "ActivationArgu": {
+      "type": "object",
+      "required": [
+        "argu",
+        "kind"
+      ],
+      "properties": {
+        "argu": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "kind": {
+          "$ref": "#/definitions/ActivationKind"
+        }
+      }
+    },
+    "ActivationKind": {
+      "type": "string",
+      "enum": [
+        "Sigmoid",
+        "HyperbolicTangent",
+        "SoftPlus",
+        "SoftMax",
+        "RectifiedLinearUnit",
+        "LeakyRectifiedLinearUnit",
+        "Identity"
+      ]
+    },
+    "CostFunctionArgu": {
+      "type": "object",
+      "required": [
+        "argu",
+        "kind"
+      ],
+      "properties": {
+        "argu": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "kind": {
+          "$ref": "#/definitions/CostFunctions"
+        }
+      }
+    },
+    "CostFunctions": {
+      "description": "Available cost functions The only reason for having this enum is to `match` it in `NeuralNetwork`",
+      "type": "string",
+      "enum": [
+        "SquaredError",
+        "CrossEntropy"
+      ]
+    },
+    "Matrix": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "NeuralLayer": {
+      "description": "Represents a neural layer with its weights",
+      "type": "object",
+      "required": [
+        "activation",
+        "biases",
+        "inputs",
+        "neurons",
+        "weights"
+      ],
+      "properties": {
+        "activation": {
+          "$ref": "#/definitions/ActivationArgu"
+        },
+        "biases": {
+          "$ref": "#/definitions/Matrix"
+        },
+        "inputs": {
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0.0
+        },
+        "neurons": {
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0.0
+        },
+        "weights": {
+          "$ref": "#/definitions/Matrix"
+        }
+      }
+    },
+    "NeuralNetwork": {
+      "description": "Represents a Neural Network with layers, inputs and outputs",
+      "type": "object",
+      "required": [
+        "cost_function",
+        "layers",
+        "shuffle_data"
+      ],
+      "properties": {
+        "cost_function": {
+          "$ref": "#/definitions/CostFunctionArgu"
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NeuralLayer"
+          }
+        },
+        "shuffle_data": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

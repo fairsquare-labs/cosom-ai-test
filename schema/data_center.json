@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataCenter",
+  "type": "object",
+  "required": [
+    "nn_name",
+    "owner",
+    "samples"
+  ],
+  "properties": {
+    "nn_name": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "samples": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Sample"
+      }
+    }
+  },
+  "definitions": {
+    "Sample": {
+      "type": "object",
+      "required": [
+        "inputs"
+      ],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "outputs": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}
